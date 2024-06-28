@@ -24,6 +24,9 @@ public class Patient {
     @Column(name="SEXO", length = 1)
     private String gender;
 
+    @Column(name="TELEFONE", length = 13)
+    private String phoneNumber;
+
     @Column(name="CEP", length = 8)
     private String zipCode;
 
@@ -167,5 +170,13 @@ public class Patient {
 
     public void setMedia(List<Media> media) {
         this.media = media;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

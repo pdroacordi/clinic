@@ -18,11 +18,11 @@ import java.util.Date;
 
 public class TokenUtil {
 
-    public static final long SEGUNDOS   = 1000;
-    public static final long MINUTOS    = 60 * SEGUNDOS;
-    public static final long HORAS      = 60 * MINUTOS;
-    public static final long DIAS       = 24 * HORAS;
-    public static final long EXPIRATION = 5 * DIAS;
+    public static final long SECONDS   = 1000;
+    public static final long MINUTES    = 60 * SECONDS;
+    public static final long HOURS      = 60 * MINUTES;
+    public static final long DAYS       = 24 * HOURS;
+    public static final long EXPIRATION = 2*DAYS;
 
     public static final String ISSUER = "*CompNam*";
     public static final String SECRET_KEY = "abcdefghijklmnopqrstuvwxyz0123456789";

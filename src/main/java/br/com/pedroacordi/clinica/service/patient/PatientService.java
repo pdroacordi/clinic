@@ -4,6 +4,9 @@ import br.com.pedroacordi.clinica.dao.PatientDAO;
 import br.com.pedroacordi.clinica.model.Diagnosis;
 import br.com.pedroacordi.clinica.model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,6 +17,8 @@ public class PatientService implements IPatientService{
 
     @Autowired
     private PatientDAO dao;
+
+    private static final int PAGE_SIZE = 1;
 
     @Override
     public Patient create(Patient patient) {
@@ -94,4 +99,12 @@ public class PatientService implements IPatientService{
         dao.save(patient);
         return true;
     }
+
+    @Override
+    public Page<Patient> getPatients(int page) {
+        Pageable pageable = PageRequest.of(page, PAGE_SIZE );
+        return dao.findByOrderByNameAsc(pageable);
+    }
+
+
 }

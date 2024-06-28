@@ -3,6 +3,7 @@ package br.com.pedroacordi.clinica.controller;
 import br.com.pedroacordi.clinica.model.Patient;
 import br.com.pedroacordi.clinica.service.patient.IPatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,6 +55,11 @@ public class PatientController {
         return service.delete(id)
                 ? ResponseEntity.ok("Paciente excluído")
                 : ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/patients")
+    public ResponseEntity<Page<Patient>> getAllPatients(@RequestParam(name="p", defaultValue = "0") int p){
+        return ResponseEntity.ok(service.getPatients(p));
     }
 
 
