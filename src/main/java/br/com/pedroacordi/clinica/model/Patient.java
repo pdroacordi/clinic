@@ -33,6 +33,10 @@ public class Patient {
     @Column(name="ENDERECO", length = 100)
     private String address;
 
+    @Column(name="BAIRRO", length = 50)
+    private String neighborhood;
+
+
     @Column(name="COMPLEMENTO", length=30)
     private String addOn;
 
@@ -178,5 +182,13 @@ public class Patient {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getNeighborhood() {
+        return neighborhood;
+    }
+
+    public void setNeighborhood(String neighborhood) {
+        this.neighborhood = neighborhood;
     }
 }

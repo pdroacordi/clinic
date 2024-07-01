@@ -13,17 +13,17 @@ import java.util.UUID;
 
 @Component
 public class UploadService implements IUploadService{
-    private static final String PATH = "E:\\JavaProjects\\Clinica\\images";
+    private static final String PATH = "E:\\Front-End\\Clinica\\clinic-frontend\\clinic-frontend\\src\\assets\\media";
+    private static final String PATH_FRONT = "\\assets\\media\\";
 
     @Override
     public String uploadFile(MultipartFile file) {
         try{
-
             String extension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
             String newFilename = UUID.randomUUID().toString() + extension;
             Path path = Paths.get(PATH + File.separator + newFilename );
             Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-            return newFilename;
+            return PATH_FRONT+newFilename;
         }
         catch(IOException ex){
             ex.printStackTrace();

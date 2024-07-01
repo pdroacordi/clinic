@@ -2,6 +2,7 @@ package br.com.pedroacordi.clinica.service.patient;
 
 import br.com.pedroacordi.clinica.dao.PatientDAO;
 import br.com.pedroacordi.clinica.model.Diagnosis;
+import br.com.pedroacordi.clinica.model.Media;
 import br.com.pedroacordi.clinica.model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,13 +19,16 @@ public class PatientService implements IPatientService{
     @Autowired
     private PatientDAO dao;
 
-    private static final int PAGE_SIZE = 1;
+    private static final int PAGE_SIZE = 2;
 
     @Override
     public Patient create(Patient patient) {
         if(patient.getDiagnosis() == null ) {
             Diagnosis diagnosis = new Diagnosis();
             patient.setDiagnosis(diagnosis);
+        }
+        for(Media m : patient.getMedia()){
+            m.setPatient(patient);
         }
         patient.getDiagnosis().setUuid(UUID.randomUUID().toString());
         patient.getDiagnosis().setPatient(patient);
@@ -76,6 +80,11 @@ public class PatientService implements IPatientService{
             tmp.getDiagnosis().setComplementaryExams( patient.getDiagnosis().getComplementaryExams() );
         if(patient.getDiagnosis().getMedications() != null)
             tmp.getDiagnosis().setMedications( patient.getDiagnosis().getMedications() );
+
+        for(Media m : patient.getMedia()){
+            m.setPatient(tmp);
+            System.out.println("teste media aa: "+m.getLink());
+        }
 
         return dao.save(tmp);
     }
