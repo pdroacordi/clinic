@@ -66,21 +66,22 @@ public class PatientService implements IPatientService{
         if(patient.getState() != null)
             tmp.setState(patient.getState());
 
-        if(patient.getDiagnosis().getClinicalDiagnosis() != null)
-            tmp.getDiagnosis().setClinicalDiagnosis( patient.getDiagnosis().getClinicalDiagnosis() );
-        if(patient.getDiagnosis().getClinicalDonduct() != null)
-            tmp.getDiagnosis().setClinicalDonduct( patient.getDiagnosis().getClinicalDonduct() );
-        if(patient.getDiagnosis().getHmpHma() != null)
-            tmp.getDiagnosis().setHmpHma( patient.getDiagnosis().getHmpHma() );
-        if(patient.getDiagnosis().getPictureLink() != null)
-            tmp.getDiagnosis().setPictureLink( patient.getDiagnosis().getPictureLink() );
-        if(patient.getDiagnosis().getMainComplain() != null)
-            tmp.getDiagnosis().setMainComplain( patient.getDiagnosis().getMainComplain() );
-        if(patient.getDiagnosis().getComplementaryExams() != null)
-            tmp.getDiagnosis().setComplementaryExams( patient.getDiagnosis().getComplementaryExams() );
-        if(patient.getDiagnosis().getMedications() != null)
-            tmp.getDiagnosis().setMedications( patient.getDiagnosis().getMedications() );
-
+        if(patient.getDiagnosis() != null) {
+            if (patient.getDiagnosis().getClinicalDiagnosis() != null)
+                tmp.getDiagnosis().setClinicalDiagnosis(patient.getDiagnosis().getClinicalDiagnosis());
+            if (patient.getDiagnosis().getClinicalDonduct() != null)
+                tmp.getDiagnosis().setClinicalDonduct(patient.getDiagnosis().getClinicalDonduct());
+            if (patient.getDiagnosis().getHmpHma() != null)
+                tmp.getDiagnosis().setHmpHma(patient.getDiagnosis().getHmpHma());
+            if (patient.getDiagnosis().getPictureLink() != null)
+                tmp.getDiagnosis().setPictureLink(patient.getDiagnosis().getPictureLink());
+            if (patient.getDiagnosis().getMainComplain() != null)
+                tmp.getDiagnosis().setMainComplain(patient.getDiagnosis().getMainComplain());
+            if (patient.getDiagnosis().getComplementaryExams() != null)
+                tmp.getDiagnosis().setComplementaryExams(patient.getDiagnosis().getComplementaryExams());
+            if (patient.getDiagnosis().getMedications() != null)
+                tmp.getDiagnosis().setMedications(patient.getDiagnosis().getMedications());
+        }
         return dao.save(tmp);
     }
 
