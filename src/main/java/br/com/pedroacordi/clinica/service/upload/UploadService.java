@@ -1,5 +1,6 @@
 package br.com.pedroacordi.clinica.service.upload;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,8 +14,12 @@ import java.util.UUID;
 
 @Component
 public class UploadService implements IUploadService{
-    private static final String PATH = "E:\\Front-End\\Clinica\\clinic-frontend\\clinic-frontend\\src\\assets\\media";
-    private static final String PATH_FRONT = "\\assets\\media\\";
+
+    @Value("${clinic.folder}")
+    private String PATH;
+
+    @Value("${clinic.folder-front}")
+    private String PATH_FRONT;
 
     @Override
     public String uploadFile(MultipartFile file) {
@@ -29,5 +34,17 @@ public class UploadService implements IUploadService{
             ex.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public boolean deleteFile(String path) {
+        String filepath = PATH.substring(0, PATH.indexOf("/src/") +4 ) + path;
+        File file = new File(filepath);
+        if(file.exists()){
+            if(!file.delete())
+                return false;
+            return true;
+        }
+        return true;
     }
 }

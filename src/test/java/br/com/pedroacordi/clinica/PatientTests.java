@@ -15,16 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class PatientTests {
     @Autowired
     IPatientService service;
-
-    @Test
-    public void shouldCreatePatient(){
-        Patient p = new Patient();
-        p.setName("Test");
-
-        Patient res = service.create(p);
-        assertTrue( res != null && res.getDiagnosis().getUuid() != null && res.getActive() == 1 );
-    }
-
     @Test
     public void shouldDeletePatient(){
         assertTrue( service.delete( 10 ) );

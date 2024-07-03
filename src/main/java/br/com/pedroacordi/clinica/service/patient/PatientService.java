@@ -81,11 +81,6 @@ public class PatientService implements IPatientService{
         if(patient.getDiagnosis().getMedications() != null)
             tmp.getDiagnosis().setMedications( patient.getDiagnosis().getMedications() );
 
-        for(Media m : patient.getMedia()){
-            m.setPatient(tmp);
-            System.out.println("teste media aa: "+m.getLink());
-        }
-
         return dao.save(tmp);
     }
 

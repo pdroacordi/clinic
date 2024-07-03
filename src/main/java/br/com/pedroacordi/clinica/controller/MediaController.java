@@ -1,6 +1,7 @@
 package br.com.pedroacordi.clinica.controller;
 
 import br.com.pedroacordi.clinica.model.Media;
+import br.com.pedroacordi.clinica.model.MessageModel;
 import br.com.pedroacordi.clinica.service.media.IMediaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,9 +42,9 @@ public class MediaController {
     }
 
     @DeleteMapping("/media/{id}")
-    public ResponseEntity<String> delete(@PathVariable Integer id){
+    public ResponseEntity<MessageModel> delete(@PathVariable Integer id){
         return service.delete( id )
-                ? ResponseEntity.ok("Mídia excluída com sucesso")
+                ? ResponseEntity.ok(new MessageModel("Mídia excluída com sucesso"))
                 : ResponseEntity.notFound().build();
     }
 
